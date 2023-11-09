@@ -1,0 +1,28 @@
+import 'package:e_commerce_project/domain/usecase/login_usecase.dart';
+import 'package:e_commerce_project/ui/auth/login/cubit/state.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class LoginScreenViewModel extends Cubit<LoginStates>{
+  LoginUseCase loginUseCase;
+  LoginScreenViewModel({required this.loginUseCase}) : super (LoginInitialState());
+  var formKey = GlobalKey<FormState>();
+  TextEditingController emailController =
+  TextEditingController(text: 'Nancy@gmail.com');
+
+  TextEditingController passwordController =
+  TextEditingController(text: '123456');
+
+  void login()async {
+    if (formKey.currentState!.validate()) {
+      emit(LoginLoadingState(loadingMessage: 'Loading...'));
+      var either = await loginUseCase.invoke(emailController.text, passwordController.text);
+      either.fold((l) {
+        emit(LoginErrorState(errorMessage: l.errorMessage));
+      },
+              (response) {
+            emit(LoginSuccessState(response: response));
+          });
+    }
+  }
+}
