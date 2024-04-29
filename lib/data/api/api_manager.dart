@@ -3,10 +3,14 @@ import 'dart:convert';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce_project/data/api/api_constants.dart';
-import 'package:e_commerce_project/data/api/base_error.dart';
+import 'package:e_commerce_project/data/api/failures.dart';
 import 'package:e_commerce_project/data/model/request/RegisterRequest.dart';
+import 'package:e_commerce_project/data/model/response/CategoryOrBrandsResponseDto.dart';
 import 'package:e_commerce_project/data/model/response/LoginResponse.dart';
 import 'package:e_commerce_project/data/model/response/RegisterResponse.dart';
+import 'package:e_commerce_project/data/model/response/addToCartDto.dart';
+import 'package:e_commerce_project/data/model/response/productResponseDto.dart';
+import 'package:e_commerce_project/domain/entities/addToCartResponseEntity.dart';
 import 'package:http/http.dart' as http;
 
 import '../model/request/LoginRequest.dart';
@@ -18,7 +22,7 @@ class ApiManager{
     _instance ?? ApiManager._();
     return _instance;
   }
-   static Future<Either<BaseError, RegisterResponse>> register(
+   static Future<Either<Failures, RegisterResponse>> register(
       String name,
       String email,
       String password,
@@ -44,19 +48,19 @@ class ApiManager{
         return right(registerResponse);
       }
       else {
-        return Left(BaseError(errorMessage: registerResponse.error != null ?
+        return Left(Failures(errorMessage: registerResponse.error != null ?
         registerResponse.error?.msg :
             registerResponse.message
         ));
       }
     } else {
-      return left(BaseError(errorMessage: 'please check connection'));
+      return left(Failures(errorMessage: 'please check connection'));
     }
   }
 
 
 
-  static Future<Either<BaseError, LoginResponse>> login(
+  static Future<Either<Failures, LoginResponse>> login(
       String email,
       String password
       ) async {
@@ -88,11 +92,11 @@ class ApiManager{
         }
         else {
           print('999999999999999');
-          return Left(BaseError(errorMessage: loginResponse.message));
+          return Left(Failures(errorMessage: loginResponse.message));
         }
       } else {
         print('r77777777777777777');
-        return left(BaseError(errorMessage: 'please check connection'));
+        return left(Failures(errorMessage: 'please check connection'));
       }
     }catch (e){
      print(e.toString());
@@ -104,4 +108,139 @@ class ApiManager{
 
 
   }
+
+  static Future<Either<Failures, CategoryOrBrandsResponseDto>> getCategory() async {
+
+      final connectivityResult = await (Connectivity().checkConnectivity());
+      if (connectivityResult == ConnectivityResult.mobile ||
+          connectivityResult == ConnectivityResult.wifi) {
+        print('response');
+
+        Uri url = Uri.https(ApiConstants.baseurl, ApiConstants.getCategoryApi);
+
+        var response = await http.get(url);
+        print('66666666666666');
+        var categoryResponse = CategoryOrBrandsResponseDto.fromJson(jsonDecode(response.body));
+        print('7777gjg');
+        if (response.statusCode >= 200 && response.statusCode < 300) {
+          print('r55555555555555');
+
+          return Right(categoryResponse);
+        }
+        else {
+          print('999999999999999');
+          return Left(ServerError(errorMessage: categoryResponse.message));
+        }
+      } else {
+        print('r77777777777777777');
+        return left(NetworkError(errorMessage: 'please check connection'));
+      }
+
+
+
+
+
+  }
+  static Future<Either<Failures, CategoryOrBrandsResponseDto>> getBrands() async {
+
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      print('response');
+
+      Uri url = Uri.https(ApiConstants.baseurl, ApiConstants.getBrandsApi);
+
+      var response = await http.get(url);
+      print('66666666666666');
+      var brandResponse = CategoryOrBrandsResponseDto.fromJson(jsonDecode(response.body));
+      print('7777gjg');
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        print('r55555555555555');
+
+        return Right(brandResponse);
+      }
+      else {
+        print('999999999999999');
+        return Left(ServerError(errorMessage: brandResponse.message));
+      }
+    } else {
+      print('r77777777777777777');
+      return left(NetworkError(errorMessage: 'please check connection'));
+    }
+
+
+
+
+
+  }
+  static Future<Either<Failures, ProductResponseDto>> getProducts() async {
+
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      print('response');
+
+      Uri url = Uri.https(ApiConstants.baseurl, ApiConstants.getProductApi);
+
+      var response = await http.get(url);
+      print('66666666666666');
+      var productResponse = ProductResponseDto.fromJson(jsonDecode(response.body));
+      print('7777gjg');
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        print('r55555555555555');
+
+        return Right(productResponse);
+      }
+      else {
+        print('999999999999999');
+        return Left(ServerError(errorMessage: productResponse.message));
+      }
+    } else {
+      print('r77777777777777777');
+      return left(NetworkError(errorMessage: 'please check connection'));
+    }
+
+
+
+
+
+  }
+
+  static Future<Either<Failures, AddToCartResponseEntity >> addToCart(String productId) async {
+
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      print('response');
+
+      Uri url = Uri.https(ApiConstants.baseurl, ApiConstants.addToCart);
+
+      var response = await http.post(url,
+      body: {
+        'productId' : productId,
+      }
+      );
+      print('66666666666666');
+      var addCartResponse = AddToCartDto.fromJson(jsonDecode(response.body));
+      print('7777gjg');
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        print('r55555555555555');
+
+        return Right(addCartResponse);
+      }
+      else {
+        print('999999999999999');
+        return Left(ServerError(errorMessage: addCartResponse.message));
+      }
+    } else {
+      print('r77777777777777777');
+      return left(NetworkError(errorMessage: 'please check connection'));
+    }
+
+
+
+
+
+  }
+
 }

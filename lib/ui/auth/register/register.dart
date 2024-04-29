@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../domain/di.dart';
 import '../../../utils/text_form_field.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -67,7 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           return 'Please enter your full name';
                         }
                         return null;
-                      },
+                      }, suffixIconFunction: () {  },
                     ),
                   ),
                   Padding(
@@ -91,7 +92,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         }
 
                         return null;
-                      },
+                      }, suffixIconFunction: () {  },
                     ),
                   ),
                   Padding(
@@ -112,7 +113,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           return 'Password should be at least 6 char';
                         }
                         return null;
-                      },
+                      }, suffixIconFunction: () {  },
                     ),
                   ),
                   Padding(
@@ -133,7 +134,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           return 'password doesnot match ';
                         }
                         return null;
-                      },
+                      }, suffixIconFunction: () {  },
                     ),
                   ),
                   Padding(
@@ -151,7 +152,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         }
 
                         return null;
-                      },
+                      }, suffixIconFunction: () {  },
                     ),
                   ),
                   Padding(

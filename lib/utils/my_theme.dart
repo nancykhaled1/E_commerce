@@ -2,10 +2,12 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+
 class MyTheme {
   static const Color primaryColor = Color(0xFF004182);
   static const Color whiteColor = Color(0xFFFFFFFF);
   static Color blackColor = Color(0xFF303030);
+  static Color darkPrimaryColor = Color(0xFF06004F);
 
 
 

@@ -3,14 +3,14 @@
 /// param : "phone"
 /// location : "body"
 
-class ErrorResponse {
-  ErrorResponse({
+class Error {
+  Error({
       this.value, 
       this.msg, 
       this.param, 
       this.location,});
 
-  ErrorResponse.fromJson(dynamic json) {
+  Error.fromJson(dynamic json) {
     value = json['value'];
     msg = json['msg'];
     param = json['param'];

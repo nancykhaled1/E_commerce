@@ -24,7 +24,7 @@ class RegisterResponse {
   String? message;
   UserDto? user;
   String? token;
-  ErrorResponse? error;
+  Error? error;
   String? statusMsg;
 
   Map<String, dynamic> toJson() {

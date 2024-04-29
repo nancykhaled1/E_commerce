@@ -9,6 +9,7 @@ class TextFormWidget extends StatelessWidget {
   String? Function(String?) validator;
   bool isobscure;
   Widget? suffixIcon;
+  void Function()? suffixIconFunction;
 
   TextFormWidget({
     required this.fieldName,
@@ -18,6 +19,7 @@ class TextFormWidget extends StatelessWidget {
     required this.validator,
     this.suffixIcon,
     this.isobscure = false,
+    required this.suffixIconFunction,
   });
 
   @override
@@ -39,6 +41,10 @@ class TextFormWidget extends StatelessWidget {
               hintText: hintText,
               hintStyle: Theme.of(context).textTheme.titleMedium!.copyWith(
                 color: Colors.grey
+              ),
+              suffixIcon: InkWell(
+                  onTap: suffixIconFunction,
+                  child: Icon(Icons.edit)
               ),
               errorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),

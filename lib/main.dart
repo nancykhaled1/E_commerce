@@ -1,15 +1,28 @@
 import 'dart:io';
 
+import 'package:e_commerce_project/home/home_screen/home_screen.dart';
+import 'package:e_commerce_project/home/tabs/product_tab/product_details/product_details.dart';
 import 'package:e_commerce_project/ui/auth/login/login.dart';
 import 'package:e_commerce_project/ui/auth/register/register.dart';
 import 'package:e_commerce_project/ui/splash/splash.dart';
+import 'package:e_commerce_project/utils/shared_preference.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
+void main()async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferenceUtils.init();
 
   HttpOverrides.global = MyHttpOverrides();
-  runApp(const MyApp());
+
+  String route;
+  var user = SharedPreferenceUtils.getData(key: 'Token');
+  if(user == null){
+    route = LoginScreen.routeName;
+  }else{
+    route = HomeScreen.routeName;
+  }
+  runApp(MyApp(route));
 }
 class MyHttpOverrides extends HttpOverrides{
   @override
@@ -20,8 +33,8 @@ class MyHttpOverrides extends HttpOverrides{
 }
 
 class MyApp extends StatelessWidget {
-
-  const MyApp({super.key});
+  String route;
+   MyApp(this.route);
 
   // This widget is the root of your application.
   @override
@@ -33,11 +46,13 @@ class MyApp extends StatelessWidget {
       builder: (context,child){
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          initialRoute: LoginScreen.routeName,
+          initialRoute: route,
           routes: {
             SplashScreen.routeName : (context) => SplashScreen(),
             RegisterScreen.routeName : (context) => RegisterScreen(),
-            LoginScreen.routeName : (context) => LoginScreen()
+            LoginScreen.routeName : (context) => LoginScreen(),
+            HomeScreen.routeName : (context) => HomeScreen(),
+            ProductDetails.routeName : (context) => ProductDetails()
           },
         );
       },
