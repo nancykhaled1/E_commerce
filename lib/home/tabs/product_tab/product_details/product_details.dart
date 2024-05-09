@@ -139,7 +139,10 @@ class ProductDetails extends StatelessWidget {
                 Container(
                   height: 50.h,
                   decoration: BoxDecoration(
-                    color: MyTheme.primaryColor,
+                   // color: MyTheme.primaryColor,
+                    border: Border.all(
+                      color: MyTheme.primaryColor
+                    ),
                     borderRadius: BorderRadius.circular(
                       100.r,
                     ),
@@ -151,7 +154,7 @@ class ProductDetails extends StatelessWidget {
                         onPressed: () {},
                         icon: Icon(
                           Icons.remove_circle_outline_rounded,
-                          color: MyTheme.whiteColor,
+                          color: MyTheme.primaryColor,
                           size: 28.sp,
                         ),
                       ),
@@ -160,14 +163,14 @@ class ProductDetails extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 18.sp,
                             fontWeight: FontWeight.w500,
-                            color: MyTheme.whiteColor),
+                            color: MyTheme.primaryColor),
                       ),
                       IconButton(
                         padding: EdgeInsets.zero,
                         onPressed: () {},
                         icon: Icon(
                           Icons.add_circle_outline_rounded,
-                          color: MyTheme.whiteColor,
+                          color: MyTheme.primaryColor,
                           size: 28.sp,
                         ),
                       ),
@@ -196,7 +199,7 @@ class ProductDetails extends StatelessWidget {
               trimMode: TrimMode.Line,
               style: Theme.of(context).textTheme.titleSmall!.copyWith(
                     fontSize: 15.sp,
-                    color: MyTheme.primaryColor.withOpacity(
+                    color: MyTheme.blackColor.withOpacity(
                       0.6,
                     ),
                   ),
@@ -211,61 +214,42 @@ class ProductDetails extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                   color: MyTheme.darkPrimaryColor),
             ),
+            SizedBox(
+              height: 24.h,
+            ),
             Spacer(
               flex: 30,
             ),
-            Row(
-              children: [
-                Column(
-                  children: [
-                    Text(
-                      "Total price",
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                            fontSize: 18.sp,
-                            color: MyTheme.primaryColor,
-                          ),
-                    ),
-                    SizedBox(
-                      height: 8.h,
-                    ),
-                    Text(
-                      "EGP ${args.price}",
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                          fontSize: 18.sp,
-                          color: MyTheme.primaryColor,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: 32.w,
-                ),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: TextButton.styleFrom(
-                      backgroundColor: MyTheme.primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16.r),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.h),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          const Icon(Icons.add_shopping_cart_outlined),
-                          Text("Add to cart",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(color: MyTheme.whiteColor)),
-                        ],
-                      ),
-                    ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 20,
+                horizontal: 50
+    ),
+              child: ElevatedButton(
+                onPressed: () {},
+                style: TextButton.styleFrom(
+                  backgroundColor: MyTheme.primaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.r),
                   ),
-                )
-              ],
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10.h,
+                 // horizontal: 20
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const Icon(Icons.add_shopping_cart_outlined),
+                      Text("Add to cart",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(color: MyTheme.whiteColor)),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ],
         ),

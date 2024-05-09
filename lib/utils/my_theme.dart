@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 
 class MyTheme {
-  static const Color primaryColor = Color(0xFF004182);
+  static const Color primaryColor = Color(0xFFE66F51);
   static const Color whiteColor = Color(0xFFFFFFFF);
   static Color blackColor = Color(0xFF303030);
   static Color darkPrimaryColor = Color(0xFF06004F);
@@ -18,17 +18,17 @@ class MyTheme {
           titleLarge: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w700,
-            color: whiteColor,
+            color: blackColor,
           ),
           titleMedium: TextStyle(
-            fontSize: 18,
+            fontSize: 20,
             fontWeight: FontWeight.w700,
-            color: whiteColor,
+            color: blackColor,
           ),
           titleSmall: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
-            color: whiteColor,
+            color: blackColor,
           ))
 
   );

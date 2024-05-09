@@ -18,7 +18,6 @@ class HomeScreen extends StatelessWidget{
     return BlocConsumer(
       bloc: viewModel,
         listener: (context,state){
-
         },
       builder: (context ,state){
         return Scaffold(

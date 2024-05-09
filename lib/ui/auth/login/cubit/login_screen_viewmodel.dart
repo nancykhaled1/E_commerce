@@ -8,10 +8,12 @@ class LoginScreenViewModel extends Cubit<LoginStates>{
   LoginScreenViewModel({required this.loginUseCase}) : super (LoginInitialState());
   var formKey = GlobalKey<FormState>();
   TextEditingController emailController =
-  TextEditingController(text: 'Nancy@gmail.com');
+  TextEditingController();
 
   TextEditingController passwordController =
-  TextEditingController(text: '123456');
+  TextEditingController();
+  bool isChecked = false;
+  bool ispass = true;
 
   void login()async {
     if (formKey.currentState!.validate()) {

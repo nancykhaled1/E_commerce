@@ -7,10 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../utils/my_theme.dart';
+import '../../cart/cartscreen.dart';
 
 class ProductTab extends StatelessWidget {
   ProductTabViewModel viewModel = ProductTabViewModel(getAllProductUseCase: injectGetAllProductsUseCase(),
       addToCartUseCase: injectAddToCartUseCase());
+ // static const routeName = 'product';
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -31,54 +33,78 @@ class ProductTab extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.asset(
-                    'assets/images/route.png',
-                    color: MyTheme.primaryColor,
-                    height: 50.h,
-                    width: 100.w,
-                  ),
+                 Padding(
+                   padding: const EdgeInsets.only(
+                     top: 20
+                   ),
+                   child: Row(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     children: [
+                       Text('Categories',
+                       style: TextStyle(
+                         fontSize: 24,
+                         fontWeight: FontWeight.w500,
+
+                       )
+                       )
+                     ],
+                   ),
+                 ),
                   SizedBox(
                     height: 20.h,
                   ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          cursorColor: MyTheme.primaryColor,
-                          decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(
-                                  vertical: 10),
-                              hintText: 'what do you search for ?',
-                              hintStyle: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.normal,
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 42,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              controller: viewModel.controller,
+                              decoration: InputDecoration(
+                                labelText: 'Search',
+                                labelStyle: TextStyle(
+                                  color: Color(0xffC0BFBF),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                                prefixIcon: Icon(Icons.search),
+                                prefixIconColor: Colors.redAccent,
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(color: Color(0xffE66F51)),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(color: Color(0xffE66F51)),
+                                ),
                               ),
-                              prefixIcon: const Icon(
-                                Icons.search,
-                                size: 30,
-                                color: MyTheme.primaryColor,
+                              keyboardType: TextInputType.text,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              Navigator.pushReplacementNamed(context, CartScreen.routNam);
+                            },
+                            icon: Badge(
+                              label: Text(viewModel.numOfCartItems.toString()),
+                              child: Icon(
+                                size: 29,
+                                Icons.shopping_cart_outlined,
+                                color: Color(0xffE66F51),
                               ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(40),
-                                borderSide: const BorderSide(
-                                    color: MyTheme.primaryColor),
-                              )),
-                        ),
+                            ),
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      InkWell(
-                          onTap: () {},
-                          child: const Icon(
-                            Icons.shopping_cart,
-                            size: 30,
-                            color: MyTheme.primaryColor,
-                          )),
-                    ],
+                    ),
                   ),
                   SizedBox(
-                    height: 10.h,
+                    height: 20.h,
                   ),
                   state is ProductListTabLoadingStates ?
                   Center(

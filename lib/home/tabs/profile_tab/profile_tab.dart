@@ -1,150 +1,281 @@
+
+import 'dart:core';
+
 import 'package:e_commerce_project/utils/my_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../ui/auth/login/login.dart';
 import '../../../utils/shared_preference.dart';
-import '../../../utils/text_form_field.dart';
 
-class ProfileTab extends StatelessWidget {
-  var formKey = GlobalKey<FormState>();
-  var nameController = TextEditingController();
-  var passwordController = TextEditingController();
-  var addressController = TextEditingController();
-  var emailController = TextEditingController();
-  var phoneController = TextEditingController();
-  bool isObsecure = true;
+class ProfileTab extends StatefulWidget {
+  const ProfileTab({super.key});
+  @override
+  State<ProfileTab> createState() => _ProfileTabState();
+}
+
+class _ProfileTabState extends State<ProfileTab> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 17.w),
-            child: Form(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+    return SafeArea(
+      child: Scaffold(
+
+        body: Padding(
+          padding: const EdgeInsets.all(15),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                      top: 25
+                  ),
+                  child: Text(
+                    'Profile',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w500,
+                      color: MyTheme.blackColor,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                ListTile(
+                  title: Text(
+                    "Mary Watson Rai",
+                    style: TextStyle(
+                      color: Color(0xff000000),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  subtitle: Text(
+                    "marywatson@gmail.com",
+                    style: TextStyle(
+                      color: Color(0xffE66F51),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  leading: Image.asset("assets/images/prof.png"),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Stack(
+                  clipBehavior: Clip.none,
                   children: [
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Image.asset(
-                          'assets/images/route.png',
-                          color: MyTheme.primaryColor,
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            offset: Offset(1, 1),
+                            spreadRadius: 0,
+                            blurRadius: 10,
+                          ),
+                          BoxShadow(
+                            color: Colors.black12,
+                            offset: Offset(-1, -1),
+                            spreadRadius: 0,
+                            blurRadius: 10,
+                          ),
+                        ],
+                      ),
+                      width: 370,
+                      height: 420,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Gerneral",
+                              style: TextStyle(
+                                color: Color(0xff000000),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.person_2_outlined,
+                                      color: Color(0xffBDBDBD),
+                                      size: 25,
+                                    ),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    Text(
+                                      "Edit profile",
+                                      style: TextStyle(
+                                        color: Color(0xffBDBDBD),
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.navigate_next,
+                                    color: Color(0xffF2A361),
+                                    size: 30,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.notifications_outlined,
+                                      color: Color(0xffBDBDBD),
+                                      size: 25,
+                                    ),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    Text(
+                                      "Notifications",
+                                      style: TextStyle(
+                                        color: Color(0xffBDBDBD),
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.navigate_next,
+                                    color: Color(0xffF2A361),
+                                    size: 30,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.language,
+                                      color: Color(0xffBDBDBD),
+                                      size: 25,
+                                    ),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    Text(
+                                      "Language",
+                                      style: TextStyle(
+                                        color: Color(0xffBDBDBD),
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.navigate_next,
+                                    color: Color(0xffF2A361),
+                                    size: 30,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.security,
+                                      color: Color(0xffBDBDBD),
+                                      size: 25,
+                                    ),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    Text(
+                                      "Security",
+                                      style: TextStyle(
+                                        color: Color(0xffBDBDBD),
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.navigate_next,
+                                    color: Color(0xffF2A361),
+                                    size: 30,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 15,
+                                  ),
+                                  child: Icon(
+                                    Icons.logout,
+                                    color: Color(0xffE33629),
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    SharedPreferenceUtils.removeData('Token');
+                                    Navigator.pushReplacementNamed(context,
+                                        LoginScreen.routeName);
+                                  },
+                                  child: Text(
+                                    "Log Out",
+                                    style: TextStyle(
+                                      color: Color(0xffE33629),
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                        IconButton(onPressed: (){
-                          SharedPreferenceUtils.removeData('Token');
-                          Navigator.pushReplacementNamed(context,
-                              LoginScreen.routeName);
-                        },
-                            icon: Icon(Icons.logout))
-                      ],
+                      ),
                     ),
-                    SizedBox(
-                      height: 18.h,
+                    Positioned(
+                      bottom: -30,
+                      left: -5,
+                      child: Image.asset(
+                        "assets/images/westack.png",
+                        width: 250,
+                        height: 170,
+                      ),
                     ),
-                    Text(
-                      "WELCOME, MARIAM",
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium!
-                          .copyWith(color: MyTheme.primaryColor),
-                    ),
-                    SizedBox(
-                      height: 8.h,
-                    ),
-                    Text(
-                      "Mariam@gmail.com",
-                      style: TextStyle(color: MyTheme.blackColor),
-                    ),
-                    SizedBox(
-                      height: 40.h,
-                    ),
-                    TextFormWidget(
-                      fieldName: 'Your Full Name',
-                      hintText: 'Mariam mahmoud hafez',
-                      controller: nameController,
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return 'please enter full name';
-                        }
-                        return null;
-                      },
-                      keyboardType: TextInputType.text,
-                      suffixIconFunction: (){},
-                    ),
-                    TextFormWidget(
-                      fieldName: 'Your E-mail',
-                      hintText: 'Mariam@gmail.com',
-                      controller: emailController,
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return 'please enter your email address';
-                        }
-                        bool emailValid = RegExp(
-                            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                            .hasMatch(value);
-                        if (!emailValid) {
-                          return 'invalid email';
-                        }
-                        return null;
-                      },
-                      keyboardType: TextInputType.emailAddress,
-                      suffixIconFunction: (){},
-                    ),
-                    TextFormWidget(
-                      fieldName: 'Your Password',
-                      hintText: '********',
-                      controller: passwordController,
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return 'please enter password';
-                        }
-                        if (value.trim().length < 6 ||
-                            value.trim().length > 30) {
-                          return 'password should be >6 & <30';
-                        }
-                        return null;
-                      },
-                      keyboardType: TextInputType.text,
-                      suffixIconFunction: (){},
-                    ),
-                    TextFormWidget(
-                      fieldName: 'Your Mobile Number',
-                      hintText: '01021212121',
-                      controller: phoneController,
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return 'please enter your mobile no';
-                        }
-                        return null;
-                      },
-                      keyboardType: TextInputType.text,
-                      suffixIconFunction: (){},
-                    ),
-                    TextFormWidget(
-                      fieldName: 'Your Address',
-                      hintText: 'Address',
-                      controller: addressController,
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return 'please enter address';
-                        }
-                        return null;
-                      },
-                      keyboardType: TextInputType.text,
-                      suffixIconFunction: (){},
-                    ),
-
-
                   ],
                 ),
-              ),
-            )),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

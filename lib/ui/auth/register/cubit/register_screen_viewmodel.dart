@@ -10,19 +10,19 @@ class RegisterScreenViewModel extends Cubit<RegisterStates>{
 
   var formKey = GlobalKey<FormState>();
 
-  TextEditingController nameController = TextEditingController(text: 'Nancy');
+  TextEditingController nameController = TextEditingController();
 
   TextEditingController emailController =
-  TextEditingController(text: 'Nancy@gmail.com');
+  TextEditingController();
 
   TextEditingController passwordController =
-  TextEditingController(text: '123456');
+  TextEditingController();
 
   TextEditingController confirmationPasswordController =
-  TextEditingController(text: '123456');
+  TextEditingController();
 
   TextEditingController phoneController =
-  TextEditingController(text: '01210047728');
+  TextEditingController();
 
 
 

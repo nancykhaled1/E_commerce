@@ -2,7 +2,7 @@ import 'package:e_commerce_project/utils/my_theme.dart';
 import 'package:flutter/material.dart';
 
 class TextFormWidget extends StatelessWidget {
-  String fieldName;
+  //String fieldName;
   String hintText;
   TextInputType keyboardType;
   TextEditingController controller;
@@ -12,14 +12,14 @@ class TextFormWidget extends StatelessWidget {
   void Function()? suffixIconFunction;
 
   TextFormWidget({
-    required this.fieldName,
+    //required this.fieldName,
     required this.hintText,
     this.keyboardType = TextInputType.text,
     required this.controller,
     required this.validator,
     this.suffixIcon,
     this.isobscure = false,
-    required this.suffixIconFunction,
+     this.suffixIconFunction,
   });
 
   @override
@@ -27,39 +27,45 @@ class TextFormWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
-          fieldName,
-          style: Theme.of(context).textTheme.titleMedium,
-          textAlign: TextAlign.start,
-        ),
+
         Padding(
-          padding: const EdgeInsets.only(top: 24, bottom: 20),
-          child: TextFormField(
-            decoration: InputDecoration(
-              fillColor: MyTheme.whiteColor,
-              filled: true,
-              hintText: hintText,
-              hintStyle: Theme.of(context).textTheme.titleMedium!.copyWith(
-                color: Colors.grey
+          padding: const EdgeInsets.only(bottom: 20,left: 40, right: 40),
+          child: Container(
+            alignment: Alignment.center,
+            child: TextFormField(
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.symmetric(vertical: 10),
+                fillColor: MyTheme.whiteColor,
+                filled: true,
+                hintText: hintText,
+                hintStyle: TextStyle(
+
+                  color: Colors.grey,
+                  fontSize: 15
+                ),
+                suffix: suffixIcon,
+                // suffixIcon: InkWell(
+                //     onTap: suffixIconFunction,
+                //     child: Icon(Icons.visibility_off)
+                // ),
+                errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: MyTheme.primaryColor),
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
-              suffixIcon: InkWell(
-                  onTap: suffixIconFunction,
-                  child: Icon(Icons.edit)
-              ),
-              errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
+
+              keyboardType: keyboardType,
+              controller: controller,
+              validator: validator,
+              obscureText: isobscure,
             ),
-            keyboardType: keyboardType,
-            controller: controller,
-            validator: validator,
-            obscureText: isobscure,
           ),
         ),
       ],

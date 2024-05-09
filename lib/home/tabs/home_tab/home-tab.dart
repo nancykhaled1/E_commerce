@@ -1,4 +1,5 @@
 import 'package:e_commerce_project/domain/di.dart';
+import 'package:e_commerce_project/home/cart/cartscreen.dart';
 import 'package:e_commerce_project/home/tabs/home_tab/widget/brands_section.dart';
 import 'package:e_commerce_project/home/tabs/home_tab/widget/category_section.dart';
 import 'package:e_commerce_project/home/tabs/home_tab/cubit/home_tab_states.dart';
@@ -43,53 +44,69 @@ class _HomeTabState extends State<HomeTab> {
                 height: double.infinity,
                 child: SingleChildScrollView(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image.asset(
-                        'assets/images/e-shop.png',
-                        color: MyTheme.primaryColor,
-                        height: 100.h,
-                        width: 100.w,
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 20
+                        ),
+                        child: Image.asset(
+                          'assets/images/E-Shop.png',
+                          // color: MyTheme.primaryColor,
+                          height: 60.h,
+                          width: 200,
+                        ),
+                      ),
+                      // SizedBox(
+                      //   height: 20.h,
+                      // ),
+                      Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 42,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: viewModel.controller,
+                                  decoration: InputDecoration(
+                                    labelText: 'Search',
+                                    labelStyle: TextStyle(
+                                      color: Color(0xffC0BFBF),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                    prefixIcon: Icon(Icons.search),
+                                    prefixIconColor: Colors.redAccent,
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: BorderSide(color: Color(0xffE66F51)),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: BorderSide(color: Color(0xffE66F51)),
+                                    ),
+                                  ),
+                                  keyboardType: TextInputType.text,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  size: 29,
+                                  Icons.shopping_cart_outlined,
+                                  color: Color(0xffE66F51),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                       SizedBox(
-                        height: 20.h,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TextFormField(
-                              cursorColor: MyTheme.primaryColor,
-                              decoration: InputDecoration(
-                                  contentPadding: const EdgeInsets.symmetric(
-                                      vertical: 10),
-                                  hintText: 'what do you search for ?',
-                                  hintStyle: const TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                  prefixIcon: const Icon(
-                                    Icons.search,
-                                    size: 30,
-                                    color: MyTheme.primaryColor,
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(40),
-                                    borderSide: const BorderSide(
-                                        color: MyTheme.primaryColor),
-                                  )),
-                            ),
-                          ),
-                           SizedBox(
-                            width: 10.w,
-                          ),
-                          InkWell(
-                              onTap: () {},
-                              child: const Icon(
-                                Icons.shopping_cart,
-                                size: 30,
-                                color: MyTheme.primaryColor,
-                              )),
-                        ],
+                        height: 15.w,
                       ),
                       ImageSlideshow(
                         width: double.infinity,
@@ -116,32 +133,33 @@ class _HomeTabState extends State<HomeTab> {
                             .toList(),
                       ),
                        SizedBox(
-                        height: 10.h,
+                        height: 20.h,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Categories',
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .titleLarge?.copyWith(
-                              color: MyTheme.primaryColor
-                            )
-                          ),
-                          InkWell(
-                              onTap: () {},
-                              child: Text(
-                                'View all',
-                                style: Theme
-                                    .of(context)
-                                    .textTheme
-                                    .titleMedium?.copyWith(
-                                    color: MyTheme.primaryColor
-                                )
-                              ))
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Categories',
+                              style: Theme
+                                  .of(context)
+                                  .textTheme
+                                  .titleLarge
+                            ),
+                            InkWell(
+                                onTap: () {},
+                                child: Text(
+                                  'View all',
+                                  style: Theme
+                                      .of(context)
+                                      .textTheme
+                                      .titleSmall?.copyWith(
+                                      color: MyTheme.primaryColor
+                                  )
+                                ))
+                          ],
+                        ),
                       ),
                        SizedBox(
                         height: 15.h,
@@ -156,14 +174,31 @@ class _HomeTabState extends State<HomeTab> {
                        SizedBox(
                         height: 15.h,
                       ),
-                      Text(
-                        'Brands',
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .titleLarge?.copyWith(
-                            color: MyTheme.primaryColor
-                        )
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                                'Brands',
+                                style: Theme
+                                    .of(context)
+                                    .textTheme
+                                    .titleLarge
+                            ),
+                            InkWell(
+                                onTap: () {},
+                                child: Text(
+                                    'View all',
+                                    style: Theme
+                                        .of(context)
+                                        .textTheme
+                                        .titleSmall?.copyWith(
+                                        color: MyTheme.primaryColor
+                                    )
+                                ))
+                          ],
+                        ),
                       ),
                        SizedBox(
                         height: 15.h,

@@ -11,8 +11,8 @@ class SharedPreferenceUtils {
     return await sharedPreferences.remove(key);
   }
 
-  static Object? getData({required String key}) {
-    return sharedPreferences.get(key);
+  static String? getData({dynamic key}) {
+    return sharedPreferences.getString(key);
   }
 
   static Future<bool> saveData({required String key, required dynamic value}) {

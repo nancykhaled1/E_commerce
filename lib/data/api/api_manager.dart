@@ -11,6 +11,7 @@ import 'package:e_commerce_project/data/model/response/RegisterResponse.dart';
 import 'package:e_commerce_project/data/model/response/addToCartDto.dart';
 import 'package:e_commerce_project/data/model/response/productResponseDto.dart';
 import 'package:e_commerce_project/domain/entities/addToCartResponseEntity.dart';
+import 'package:e_commerce_project/utils/shared_preference.dart';
 import 'package:http/http.dart' as http;
 
 import '../model/request/LoginRequest.dart';
@@ -212,13 +213,16 @@ class ApiManager{
     if (connectivityResult == ConnectivityResult.mobile ||
         connectivityResult == ConnectivityResult.wifi) {
       print('response');
-
+      var token = SharedPreferenceUtils.getData(key: 'Token');
       Uri url = Uri.https(ApiConstants.baseurl, ApiConstants.addToCart);
 
       var response = await http.post(url,
       body: {
         'productId' : productId,
-      }
+      },
+      headers: {
+        'token' : token!
+          }
       );
       print('66666666666666');
       var addCartResponse = AddToCartDto.fromJson(jsonDecode(response.body));
@@ -227,6 +231,9 @@ class ApiManager{
         print('r55555555555555');
 
         return Right(addCartResponse);
+      }
+      else if(response.statusCode == 401){
+        return Left(Failures(errorMessage: addCartResponse.message));
       }
       else {
         print('999999999999999');

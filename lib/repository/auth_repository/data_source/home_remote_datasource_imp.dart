@@ -19,7 +19,6 @@ class HomeRemoteDataSourceImp implements HomeRemoteDataSource {
        return Right(response);
      }
      );
-
   }
 
   @override

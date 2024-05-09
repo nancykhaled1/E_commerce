@@ -5,6 +5,7 @@ import 'package:e_commerce_project/domain/usecase/get_all_brands_usecase.dart';
 import 'package:e_commerce_project/domain/usecase/get_all_categories_usecase.dart';
 import 'package:e_commerce_project/home/tabs/home_tab/cubit/home_tab_states.dart';
 import 'package:e_commerce_project/home/tabs/product_tab/cubit/product_tab_states.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../domain/entities/CategoryOrBrandsResponseEntity.dart';
 import '../../../../domain/usecase/get_all_products_usecase.dart';
@@ -16,6 +17,8 @@ class ProductTabViewModel extends Cubit<ProductListTabStates>{
   ProductTabViewModel({required this.getAllProductUseCase , required this.addToCartUseCase }):super(ProductListTabInitialStates());
   List<ProductEntity> productList = [];
   int numOfCartItems =0;
+  TextEditingController controller = TextEditingController();
+
 
   void getProducts() async {
     emit(ProductListTabLoadingStates(loadingMessage: 'Loading...'));

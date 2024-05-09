@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:e_commerce_project/home/cart/cartscreen.dart';
 import 'package:e_commerce_project/home/home_screen/home_screen.dart';
 import 'package:e_commerce_project/home/tabs/product_tab/product_details/product_details.dart';
 import 'package:e_commerce_project/ui/auth/login/login.dart';
@@ -52,7 +52,8 @@ class MyApp extends StatelessWidget {
             RegisterScreen.routeName : (context) => RegisterScreen(),
             LoginScreen.routeName : (context) => LoginScreen(),
             HomeScreen.routeName : (context) => HomeScreen(),
-            ProductDetails.routeName : (context) => ProductDetails()
+            ProductDetails.routeName : (context) => ProductDetails(),
+            CartScreen.routNam :(context) => CartScreen(),
           },
         );
       },

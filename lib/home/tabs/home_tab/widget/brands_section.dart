@@ -22,7 +22,7 @@ class BrandsSection extends StatelessWidget{
             crossAxisSpacing: 10,// Number of columns
           ),
           itemBuilder: (BuildContext context, int index) {
-            return CategoryItem(categoryEntity: brandList[index]);
+            return BrandsItem(brandsEntity: brandList[index],);
           }),
     );
 
