@@ -2,6 +2,7 @@ import 'package:e_commerce_project/domain/entities/productResponseEntity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../domain/entities/productsResponseEntity.dart';
 import '../../../../utils/my_theme.dart';
 import '../cubit/product_tab_viewmodel.dart';
 
@@ -34,12 +35,16 @@ class CardItem extends StatelessWidget{
                children: [
                  ClipRRect(
                    borderRadius: BorderRadius.circular(15.r),
-                   child: Image.network( productEntity.imageCover ?? '',
+                   child: Image.network(
+                     productEntity.images![2].secureUrl ?? '', // استخدم الصورة الأولى من قائمة الصور
                      fit: BoxFit.cover,
                      width: 191.w,
                      height: 128.h,
                    ),
                  ),
+
+
+
                  Positioned(
                    top: 5.h,
                    right: 10.w,
@@ -72,7 +77,7 @@ class CardItem extends StatelessWidget{
                child: Row(
                  children: [
                    Text(
-                     "EGP ${productEntity.price}",
+                     "EGP ${productEntity.priceAfterDiscount}",
                      maxLines: 1,
                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
                        fontSize: 14.sp,
@@ -83,6 +88,30 @@ class CardItem extends StatelessWidget{
                    SizedBox(
                      width: 10.w,
                    ),
+                   Stack(
+                     children: [
+                       Text(
+                         '${productEntity.price}', // الرقم
+                         textAlign: TextAlign.center, // محاذاة النص إلى الوسط
+                         style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                           fontSize: 14.sp,
+                           color: MyTheme.darkPrimaryColor,
+                           fontWeight: FontWeight.w500,
+                         ),
+                       ),
+                       Positioned(
+                         top: 7, // تحديد الموضع الرأسي لبداية الخط
+                         left: 1, // تحديد الموضع الأفقي لبداية الخط
+                         right: 0, // تحديد الموضع الأفقي لنهاية الخط
+                         child: Container(
+                           height: 1.0, // ارتفاع الخط
+                           color: Colors.black, // لون الخط
+                         ),
+                       ),
+                     ],
+                   ),
+
+
                  ],
                ),
              ),
@@ -91,7 +120,7 @@ class CardItem extends StatelessWidget{
                child: Row(
                  children: [
                    Text(
-                     "Review (${productEntity.ratingsAverage})",
+                     "Review (${productEntity.ratingaAvg})",
                      maxLines: 1,
                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
                        fontSize: 14.sp,

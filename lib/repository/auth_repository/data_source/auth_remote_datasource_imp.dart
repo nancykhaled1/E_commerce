@@ -4,13 +4,15 @@ import 'package:e_commerce_project/data/api/failures.dart';
 import 'package:e_commerce_project/domain/entities/auth_result_Entity.dart';
 import 'package:e_commerce_project/domain/repository/auth_repository/datasource/auth_remote_datasource.dart';
 
+import '../../../domain/entities/authEntity.dart';
+
 class AuthRemoteDataSourceImp implements AuthRemoteDataSource{
   ApiManager? apiManager;
   AuthRemoteDataSourceImp({required this.apiManager});
   @override
-  Future<Either<Failures,AuthResultEntity>> register(String name, String email, String password, String confirmationPassword, String phone)
+  Future<Either<Failures,AuthEntity>> register(String name, String email, String password, String phone)
   async{
-    var either = await ApiManager.register(name, email, password, confirmationPassword, phone);
+    var either = await ApiManager.register(name, email, password, phone);
      return either.fold((l)  {
       return Left(Failures(errorMessage: l.errorMessage));
     },
@@ -20,7 +22,7 @@ class AuthRemoteDataSourceImp implements AuthRemoteDataSource{
   }
 
   @override
-  Future<Either<Failures, AuthResultEntity>> login(String email, String password) async{
+  Future<Either<Failures, AuthEntity>> login(String email, String password) async{
     var either = await ApiManager.login(email, password);
     return either.fold((l)  {
       return Left(Failures(errorMessage: l.errorMessage));

@@ -1,3 +1,4 @@
+import 'package:e_commerce_project/domain/entities/authEntity.dart';
 import 'package:e_commerce_project/domain/usecase/login_usecase.dart';
 import 'package:e_commerce_project/domain/usecase/register_usecase.dart';
 import 'package:e_commerce_project/home/home_screen/home_screen.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../domain/di.dart';
+import '../../../domain/entities/UserEntity.dart';
 import '../../../utils/text_form_field.dart';
 import 'cubit/login_screen_viewmodel.dart';
 import 'cubit/state.dart';
@@ -37,14 +39,26 @@ class _LoginScreenState extends State<LoginScreen> {
         }
         if (state is LoginSuccessState) {
           DialogUtils.hideLoading(context);
-          DialogUtils.showMessage(context, state.response.token!,
-              title: 'Success');
-          /// save token
-          SharedPreferenceUtils.saveData(key: 'Token', value: state.response.token);
-          Navigator.of(context).pushNamed(HomeScreen.routeName);
+          DialogUtils.showMessage(
+              context,
+              'Login successful!',
+              title: 'Success',
+              posActionName: 'OK',
+              posAction: () {
+                //  Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+                /// save token
+                SharedPreferenceUtils.saveData(key: 'Token', value: state.response.token);
+
+                Navigator.of(context).pushNamed(HomeScreen.routeName);
+              }
+          );
         }
         if (state is LoginLoadingState) {
-          DialogUtils.showMessage(context, state.loadingMessage!,
+          DialogUtils.showMessage(
+              context,
+              state.loadingMessage!,
+              negActionName: 'cancel',
+              negAction: (){},
               title: 'Wait');
         }
       },
@@ -199,9 +213,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                             ),
                                             child: ElevatedButton(
                                                 onPressed: () {
-                                                  viewModel.login();
-                                                  Navigator.pushNamed(
-                                                      context, HomeScreen.routeName);
+                                                  if (viewModel.formKey.currentState!.validate()) {
+                                                    viewModel.login();
+
+                                                  }
                                                 },
                                                 style: ElevatedButton.styleFrom(
                                                   // maximumSize: Size(double.infinity,30),

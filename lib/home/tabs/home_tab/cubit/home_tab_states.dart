@@ -1,5 +1,8 @@
 import 'package:e_commerce_project/domain/entities/CategoryOrBrandsResponseEntity.dart';
 
+import '../../../../domain/entities/brandsResponseEntity.dart';
+import '../../../../domain/entities/categoryResponseEntity.dart';
+
 abstract class HomeTabStates{}
 class HomeTabInitialStates extends HomeTabStates{}
 class HomeTabLoadingStates extends HomeTabStates{
@@ -11,7 +14,12 @@ class HomeTabErrorStates extends HomeTabStates{
   HomeTabErrorStates({required this.errorMessage});
 }
 class HomeTabSuccessStates extends HomeTabStates{
-
-CategoryOrBrandsResponseEntity categoryResponseEntity;
-HomeTabSuccessStates({required this.categoryResponseEntity});
+//CategoryEntity categoryEntity;
+  BrandsResponseEntity brandEntity;
+HomeTabSuccessStates({required this.brandEntity});
+}
+class HomeSuccessStates extends HomeTabStates{
+  CategoryResponseEntity categoryEntity;
+ // CategoryOrBrandsResponseEntity categoryResponseEntity;
+  HomeSuccessStates({required this.categoryEntity});
 }

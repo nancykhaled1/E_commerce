@@ -1,5 +1,5 @@
-import 'package:e_commerce_project/data/model/response/RegisterResponse.dart';
-import 'package:e_commerce_project/domain/entities/auth_result_Entity.dart';
+
+import '../../../../domain/entities/authEntity.dart';
 
 abstract class RegisterStates{}
 
@@ -13,6 +13,27 @@ class RegisterErrorState extends RegisterStates{
   RegisterErrorState({required this.errorMessage});
 }
 class RegisterSuccessState extends RegisterStates{
-  AuthResultEntity response;
+  AuthEntity response;
   RegisterSuccessState({required this.response});
 }
+
+
+// TextFormWidget(
+//   hintText: 'Confirm Password ',
+//   isobscure: true,
+//   keyboardType: TextInputType.number,
+//   controller: viewModel
+//       .confirmationPasswordController,
+//   validator: (text) {
+//     if (text!.isEmpty ||
+//         text.trim().isEmpty) {
+//       return 'Please enter confirmation password';
+//     }
+//     if (text !=
+//         viewModel.passwordController.text) {
+//       return 'password doesnot match ';
+//     }
+//     return null;
+//   },
+//   suffixIconFunction: () {},
+// ),

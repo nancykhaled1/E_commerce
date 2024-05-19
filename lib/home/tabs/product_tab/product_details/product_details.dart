@@ -1,9 +1,11 @@
-import 'package:e_commerce_project/domain/entities/productResponseEntity.dart';
 import 'package:e_commerce_project/utils/my_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:readmore/readmore.dart';
+import '../../../../domain/entities/productsResponseEntity.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+
 
 class ProductDetails extends StatelessWidget {
   static const routeName = 'product_details';
@@ -49,22 +51,23 @@ class ProductDetails extends StatelessWidget {
                   border: Border.all(color: Colors.grey, width: 2)),
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(20.r),
-                  child: ImageSlideshow(
-                      initialPage: 0,
-                      indicatorColor: MyTheme.primaryColor,
-                      indicatorBackgroundColor: MyTheme.whiteColor,
-                      indicatorBottomPadding: 20.h,
-                      autoPlayInterval: 3000,
-                      isLoop: true,
-                      children: args.images!.map((url) =>
-                        Image.network(
-                          url,
-                          fit: BoxFit.cover,
-                          height: 300.h,
-                          width: double.infinity,
-                        )).toList(),
-                  ),
-            ),
+                  child: CarouselSlider.builder(
+                    itemCount: args.images!.length,
+                    itemBuilder: (context, index, pageViewIndex) => Image.network(
+                      args.images![index].secureUrl ??'',
+                      fit: BoxFit.cover,
+                    ),
+                    options: CarouselOptions(
+                      viewportFraction: 0.8,
+                      height: 200,
+                      autoPlay: true,
+                      autoPlayInterval: Duration(seconds: 3),
+                    ),
+                  )
+
+
+
+              ),
             ),
             SizedBox(
               height: 20.h,
@@ -127,7 +130,7 @@ class ProductDetails extends StatelessWidget {
                       width: 4.w,
                     ),
                     Text(
-                      "${args.ratingsAverage}",
+                      "${args.ratingaAvg}",
                       style: Theme.of(context).textTheme.titleSmall!.copyWith(
                             color: MyTheme.darkPrimaryColor,
                             fontSize: 18.sp,

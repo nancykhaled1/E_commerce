@@ -1,33 +1,33 @@
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce_project/data/api/failures.dart';
-import 'package:e_commerce_project/domain/entities/CategoryOrBrandsResponseEntity.dart';
-import 'package:e_commerce_project/domain/entities/addToCartResponseEntity.dart';
-import 'package:e_commerce_project/domain/entities/productResponseEntity.dart';
 import 'package:e_commerce_project/domain/repository/auth_repository/datasource/home_remote_datasource.dart';
 import 'package:e_commerce_project/domain/repository/auth_repository/repository/home_repository_contract.dart';
-import 'package:e_commerce_project/repository/auth_repository/data_source/home_remote_datasource_imp.dart';
+import '../../../domain/entities/addProductToCartResponseEntity.dart';
+import '../../../domain/entities/brandsResponseEntity.dart';
+import '../../../domain/entities/categoryResponseEntity.dart';
+import '../../../domain/entities/productsResponseEntity.dart';
 
 class HomeRepositoryImp implements HomeRepositoryContract{
   HomeRemoteDataSource remoteDataSource;
   HomeRepositoryImp({required this.remoteDataSource});
 
   @override
-  Future<Either<Failures, CategoryOrBrandsResponseEntity>> getAllCategories() {
-    return remoteDataSource.getAllCategories();
+  Future<Either<Failures, CategoryResponseEntity>> getAllCategories(int pageNum) {
+    return remoteDataSource.getAllCategories(pageNum);
   }
 
   @override
-  Future<Either<Failures, CategoryOrBrandsResponseEntity>> getAllBrands() {
-    return remoteDataSource.getAllBrands();
+  Future<Either<Failures, BrandsResponseEntity>> getAllBrands(int pageNum2) {
+    return remoteDataSource.getAllBrands(pageNum2);
   }
 
   @override
-  Future<Either<Failures, ProductResponseEntity>> getAllProducts() {
-    return remoteDataSource.getAllProducts();
+  Future<Either<Failures, ProductsResponseEntity>> getAllProducts(int pages) {
+    return remoteDataSource.getAllProducts(pages);
   }
 
   @override
-  Future<Either<Failures, AddToCartResponseEntity>> addToCart(String productId) {
+  Future<Either<Failures, AddProductToCartResponseEntity>> addToCart(String productId) {
     return remoteDataSource.addToCart(productId);
   }
 }

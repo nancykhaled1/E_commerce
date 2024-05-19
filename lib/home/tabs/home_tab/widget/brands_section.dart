@@ -1,19 +1,26 @@
+import 'package:e_commerce_project/domain/entities/brandsResponseEntity.dart';
 import 'package:e_commerce_project/home/tabs/home_tab/widget/brands_item.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../domain/di.dart';
 import '../../../../domain/entities/CategoryOrBrandsResponseEntity.dart';
+import '../../../../domain/entities/categoryResponseEntity.dart';
 import '../../../../utils/my_theme.dart';
+import '../cubit/home_tab_viewmodel.dart';
 import 'category_item.dart';
 
 class BrandsSection extends StatelessWidget{
-  List<CategoryOrBrandsEntity> brandList;
+  List<BrandsEntity> brandList;
   BrandsSection({required this.brandList});
+  HomeTabViewModel viewModel = HomeTabViewModel(getAllCategoryUseCase: injectGetAllCategoryUseCase(), getAllBrandsUseCase: injectGetAllBrandsUseCase());
+
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 250,
       child: GridView.builder(
+        controller: viewModel.scrollController,
           itemCount: brandList.length,
           scrollDirection: Axis.horizontal,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

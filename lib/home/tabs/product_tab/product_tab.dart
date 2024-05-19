@@ -11,7 +11,9 @@ import '../../cart/cartscreen.dart';
 
 class ProductTab extends StatelessWidget {
   ProductTabViewModel viewModel = ProductTabViewModel(getAllProductUseCase: injectGetAllProductsUseCase(),
-      addToCartUseCase: injectAddToCartUseCase());
+      addToCartUseCase: injectAddToCartUseCase()
+      );
+  //addToCartUseCase: injectAddToCartUseCase()
  // static const routeName = 'product';
   @override
   Widget build(BuildContext context) {
@@ -114,6 +116,7 @@ class ProductTab extends StatelessWidget {
                   ):
                   Expanded(
                     child: GridView.builder(
+                      controller: viewModel.scrollController,
                         itemCount: viewModel.productList.length,
                         scrollDirection: Axis.vertical,
                         gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
@@ -125,10 +128,10 @@ class ProductTab extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) {
                           return InkWell(
                               onTap: (){
-                                Navigator.of(context).pushNamed(ProductDetails.routeName,
-                                arguments: viewModel.productList[index]
-                                );
-                              },
+                               Navigator.of(context).pushNamed(ProductDetails.routeName,
+                               arguments: viewModel.productList[index]
+                               );
+                               },
                               child: CardItem(productEntity: viewModel.productList[index],));
                         }),
                   )

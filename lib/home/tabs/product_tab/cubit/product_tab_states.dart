@@ -1,6 +1,7 @@
 import '../../../../data/api/failures.dart';
+import '../../../../domain/entities/addProductToCartResponseEntity.dart';
 import '../../../../domain/entities/addToCartResponseEntity.dart';
-import '../../../../domain/entities/productResponseEntity.dart';
+import '../../../../domain/entities/productsResponseEntity.dart';
 
 abstract class ProductListTabStates{}
 
@@ -13,11 +14,13 @@ class ProductListTabErrorStates extends ProductListTabStates{
   Failures errors ;
   ProductListTabErrorStates({required this.errors});
 }
-
 class ProductListTabSuccessStates extends ProductListTabStates {
-  ProductResponseEntity productResponseEntity ;
+  ProductsResponseEntity productResponseEntity ;
   ProductListTabSuccessStates({required this.productResponseEntity});
 }
+
+
+
 class AddToCartLoadingStates extends ProductListTabStates {
   String? loadingMessage;
 
@@ -31,7 +34,7 @@ class AddToCartTabErrorStates extends ProductListTabStates {
 }
 
 class AddToCartSuccessStates extends ProductListTabStates {
-  AddToCartResponseEntity addToCartResponseEntity;
+  AddProductToCartResponseEntity addToCartResponseEntity;
 
   AddToCartSuccessStates({required this.addToCartResponseEntity});
 }
