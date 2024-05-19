@@ -4,7 +4,6 @@ import 'package:e_commerce_project/repository/auth_repository/repository/auth_re
 
 import '../../data/api/failures.dart';
 import '../entities/authEntity.dart';
-import '../entities/auth_result_Entity.dart';
 
 class LoginUseCase{
   AuthRepositoryContract repositoryContract;

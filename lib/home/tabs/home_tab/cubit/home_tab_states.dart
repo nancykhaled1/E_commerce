@@ -1,4 +1,3 @@
-import 'package:e_commerce_project/domain/entities/CategoryOrBrandsResponseEntity.dart';
 
 import '../../../../domain/entities/brandsResponseEntity.dart';
 import '../../../../domain/entities/categoryResponseEntity.dart';

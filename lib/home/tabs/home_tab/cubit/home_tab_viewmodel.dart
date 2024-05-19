@@ -4,7 +4,6 @@ import 'package:e_commerce_project/domain/usecase/get_all_categories_usecase.dar
 import 'package:e_commerce_project/home/tabs/home_tab/cubit/home_tab_states.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../domain/entities/CategoryOrBrandsResponseEntity.dart';
 import '../../../../domain/entities/brandsResponseEntity.dart';
 import '../../../../domain/entities/categoryResponseEntity.dart';
 

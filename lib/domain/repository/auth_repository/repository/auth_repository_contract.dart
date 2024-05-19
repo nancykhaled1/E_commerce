@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:e_commerce_project/data/api/failures.dart';
 
 import '../../../entities/authEntity.dart';
-import '../../../entities/auth_result_Entity.dart';
 
 abstract class AuthRepositoryContract{
    Future<Either<Failures,AuthEntity>> register(String name ,

@@ -9,6 +9,7 @@ import '../../../ui/auth/login/login.dart';
 import '../../../utils/shared_preference.dart';
 
 class ProfileTab extends StatefulWidget {
+  static const String routeName = 'profile';
   const ProfileTab({super.key});
   @override
   State<ProfileTab> createState() => _ProfileTabState();

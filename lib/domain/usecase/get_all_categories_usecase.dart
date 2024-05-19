@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:e_commerce_project/domain/repository/auth_repository/repository/home_repository_contract.dart';
 
 import '../../data/api/failures.dart';
-import '../entities/CategoryOrBrandsResponseEntity.dart';
 import '../entities/categoryResponseEntity.dart';
 
 class GetAllCategoryUseCase {

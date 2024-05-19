@@ -1,10 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_project/domain/entities/brandsResponseEntity.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../domain/entities/CategoryOrBrandsResponseEntity.dart';
-import '../../../../domain/entities/categoryResponseEntity.dart';
 
 class BrandsItem extends StatelessWidget{
   BrandsEntity brandsEntity;

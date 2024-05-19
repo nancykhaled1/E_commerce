@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../domain/di.dart';
-import '../../../../domain/entities/CategoryOrBrandsResponseEntity.dart';
 import '../../../../domain/entities/categoryResponseEntity.dart';
 import '../cubit/home_tab_viewmodel.dart';
 import 'category_item.dart';

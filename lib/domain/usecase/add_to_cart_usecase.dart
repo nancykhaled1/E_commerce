@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:e_commerce_project/domain/entities/addToCartResponseEntity.dart';
 
 import '../../data/api/failures.dart';
 import '../entities/addProductToCartResponseEntity.dart';

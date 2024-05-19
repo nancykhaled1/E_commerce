@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:e_commerce_project/home/cart/cartscreen.dart';
 import 'package:e_commerce_project/home/home_screen/home_screen.dart';
 import 'package:e_commerce_project/home/tabs/product_tab/product_details/product_details.dart';
+import 'package:e_commerce_project/home/tabs/profile_tab/profile_tab.dart';
 import 'package:e_commerce_project/ui/auth/login/login.dart';
 import 'package:e_commerce_project/ui/auth/register/register.dart';
 import 'package:e_commerce_project/ui/splash/splash.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
             HomeScreen.routeName : (context) => HomeScreen(),
             ProductDetails.routeName : (context) => ProductDetails(),
             CartScreen.routNam :(context) => CartScreen(),
+            ProfileTab.routeName : (context) => ProfileTab()
           },
         );
       },

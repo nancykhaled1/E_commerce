@@ -1,6 +1,5 @@
 import '../../../../data/api/failures.dart';
 import '../../../../domain/entities/addProductToCartResponseEntity.dart';
-import '../../../../domain/entities/addToCartResponseEntity.dart';
 import '../../../../domain/entities/productsResponseEntity.dart';
 
 abstract class ProductListTabStates{}
