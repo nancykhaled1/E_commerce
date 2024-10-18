@@ -1,8 +1,4 @@
 import 'package:e_commerce_project/home/home_screen/cubit/home_screen_viewmodel.dart';
-import 'package:e_commerce_project/home/tabs/product_tab/product_tab.dart';
-import 'package:e_commerce_project/home/tabs/fav_tab/fav-tab.dart';
-import 'package:e_commerce_project/home/tabs/home_tab/home-tab.dart';
-import 'package:e_commerce_project/home/tabs/profile_tab/profile_tab.dart';
 import 'package:e_commerce_project/utils/my_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

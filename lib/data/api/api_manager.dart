@@ -10,6 +10,7 @@ import '../model/request/signin.dart';
 import '../model/request/signupRequest.dart';
 import '../model/response/addProductToCartDto.dart';
 import '../model/response/brandsDto.dart';
+import '../model/response/getCartDto.dart';
 import '../model/response/loginDto.dart';
 import '../model/response/proddto.dart';
 import '../model/response/registerResponseDto.dart';
@@ -222,6 +223,10 @@ class ApiManager{
          print('right');
          return Right(addCartResponse);
        }
+       else if(response.statusCode == 402){
+         print('sucess');
+         return Right(addCartResponse);
+       }
        else if(response.statusCode == 401){
          print('error');
          return Left(Failures(errorMessage: addCartResponse.message));
@@ -237,6 +242,37 @@ class ApiManager{
 
    }
 
+  static Future<Either<Failures, GetCartDto >> getCart() async {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      var token = SharedPreferenceUtils.getData(key: 'Token');
+      Uri url = Uri.https(ApiConstants.baseurl2, ApiConstants.addToCart);
+      var response = await http.get(url,
+          headers: {
+            'token' : '$token'
+          }
+      );
+      print(response.body);
+      var getCartResponse = GetCartDto.fromJson(jsonDecode(response.body));
+      print('7777gjg');
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        print('right');
+        return Right(getCartResponse);
+      }
+      else if(response.statusCode == 401){
+        print('error');
+        return Left(Failures(errorMessage: getCartResponse.message));
+      }
+      else {
+        print('errrrrrrrr');
+        return Left(ServerError(errorMessage: getCartResponse.message));
+      }
+    } else {
+      print('fffffffffffffff');
+      return left(NetworkError(errorMessage: 'please check connection'));
+    }
 
+  }
 
 }

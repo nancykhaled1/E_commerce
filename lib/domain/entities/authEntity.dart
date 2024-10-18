@@ -3,7 +3,6 @@
 
 import '../../data/model/response/User.dart';
 import '../../data/model/response/errors.dart';
-import 'UserEntity.dart';
 import 'UsersEntity.dart';
 
 /// message : "success"

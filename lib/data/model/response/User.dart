@@ -1,4 +1,3 @@
-import '../../../domain/entities/UserEntity.dart';
 import '../../../domain/entities/UsersEntity.dart';
 
 /// name : "hasan"

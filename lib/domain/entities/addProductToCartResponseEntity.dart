@@ -32,7 +32,7 @@ class CartEntity {
       this.id, 
       this.totalprice, 
       this.createdAt, 
-      this.updatedAt, 
+      this.updatedAt,
       this.v,});
 
 
@@ -43,6 +43,7 @@ class CartEntity {
   String? createdAt;
   String? updatedAt;
   int? v;
+
 
 
 

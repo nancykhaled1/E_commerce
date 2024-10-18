@@ -52,7 +52,7 @@ class ProductTabViewModel extends Cubit<ProductListTabStates>{
       emit(AddToCartTabErrorStates(errors: l));
     },
           (response) {
-            numOfCartItems = response.cart?.totalprice ??0;
+            numOfCartItems = response.cart?.totalprice ?? 0;
             print('Num of cart items: $numOfCartItems');
         emit(AddToCartSuccessStates(addToCartResponseEntity: response));
 

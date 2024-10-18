@@ -13,7 +13,6 @@ abstract class HomeRemoteDataSource{
   Future<Either<Failures,AddProductToCartResponseEntity>>addToCart(String productId);
 
 
-
 }
 
 abstract class HomeLocalDataSource{

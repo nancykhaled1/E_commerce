@@ -11,9 +11,7 @@ import 'package:e_commerce_project/utils/shared_preference.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../domain/di.dart';
-import '../../../domain/entities/UserEntity.dart';
 import '../../../utils/text_form_field.dart';
 import 'cubit/login_screen_viewmodel.dart';
 import 'cubit/state.dart';
@@ -27,7 +25,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   var viewModel = LoginScreenViewModel(loginUseCase: injectLoginUseCase());
-  @override
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginScreenViewModel, LoginStates>(
@@ -144,7 +142,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                         ),
                                         TextFormWidget(
                                           hintText: 'Password',
-                                          isobscure: true,
                                           keyboardType: TextInputType.number,
                                           controller: viewModel.passwordController,
                                           validator: (text) {

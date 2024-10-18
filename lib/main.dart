@@ -5,7 +5,6 @@ import 'package:e_commerce_project/home/tabs/product_tab/product_details/product
 import 'package:e_commerce_project/home/tabs/profile_tab/profile_tab.dart';
 import 'package:e_commerce_project/ui/auth/login/login.dart';
 import 'package:e_commerce_project/ui/auth/register/register.dart';
-import 'package:e_commerce_project/ui/splash/splash.dart';
 import 'package:e_commerce_project/utils/shared_preference.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -49,7 +48,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           initialRoute: route,
           routes: {
-            SplashScreen.routeName : (context) => SplashScreen(),
+           // SplashScreen.routeName : (context) => SplashScreen(),
             RegisterScreen.routeName : (context) => RegisterScreen(),
             LoginScreen.routeName : (context) => LoginScreen(),
             HomeScreen.routeName : (context) => HomeScreen(),
