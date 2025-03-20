@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:e_commerce_project/data/api/api_manager.dart';
 import 'package:e_commerce_project/data/api/failures.dart';
 import 'package:e_commerce_project/domain/repository/auth_repository/datasource/auth_remote_datasource.dart';
-
 import '../../../domain/entities/authEntity.dart';
 
 class AuthRemoteDataSourceImp implements AuthRemoteDataSource{

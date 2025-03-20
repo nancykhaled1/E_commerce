@@ -97,9 +97,14 @@ class ApiManager{
             email: email??'',
             password: password??''
         );
+
         print(requestBody.toJson());
         var response = await http.post(url, body: requestBody.toJson());
+        print("Response Status Code: ${response.statusCode}");
+        print("Response Body: ${response.body}");
+
         print('66666666666666');
+
         var loginResponse = LoginDto.fromJson(jsonDecode(response.body));
         print('7777gjg');
         if (response.statusCode >= 200 && response.statusCode < 300) {
